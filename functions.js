@@ -139,12 +139,6 @@
 		}
 	}
 	
-	$(document).ready(function(){
-		$(".expand").click(function(){
-			$(this).parent().nextUntil('h2').slideToggle("fast");
-			$(this).text($(this).text() == ' [-]' ? ' [+]' : ' [-]');
-		});
-	});
 	
 	function updateStats(weight, hour, minute){
 		var calories = 0, kmh = 0, minkm = 0;

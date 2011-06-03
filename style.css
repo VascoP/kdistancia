@@ -72,14 +72,6 @@ body
 	filter: dropshadow(color=#aaa, offx=0, offy=1);
 }
 
-#main h2 a
-{
-	color:#555;
-	margin:0 0 8px 3px;
-	font-size:0.8em;
-	cursor:pointer;
-}
-
 #transbttn
 {
 	position:absolute;
@@ -145,10 +137,9 @@ body
 	box-shadow: 0px 0px 5px #DD0909;
 }
 
-.radio
+input
 {
-	margin:0 2px 0 0;
-	vertical-align:middle
+	display:inline-block;
 }
 
 #map
