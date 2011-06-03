@@ -90,6 +90,7 @@ body
 
 #map
 {
+	cursor:crosshair;
 	float:left;
 	width:80%;
 }     

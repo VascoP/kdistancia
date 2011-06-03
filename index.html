@@ -47,7 +47,7 @@
 				else
 					marker[1].setLonLat(lonlat);
 				
-				if(!polyline)
+				if(polyline == null)
 				{
 					polyline = new SAPO.Maps.Polyline(lonlat, style);
 					map.addOverlay(polyline);
@@ -66,9 +66,12 @@
 		}
 		
 		function closeRun(){
-			map.removeOverlay(marker[1]);
-			polyline.insertVertex(polyline.getVertexCount(), polyline.getVertex(0));
-			updateDistance();
+			if(recording && marker.length > 1)
+			{
+				map.removeOverlay(marker[1]);
+				polyline.insertVertex(polyline.getVertexCount(), polyline.getVertex(0));
+				updateDistance();
+			}
 		}
 		
 		function updateDistance(){
@@ -93,6 +96,7 @@
 			if(marker[1])
 				map.removeOverlay(marker[1]);
 			marker.length = undo_poly.length = 0;
+			polyline = null;
 			recording = false;
 			document.getElementById("startbutton").value = "Começar a marcar";
 			updateDistance();
@@ -112,7 +116,7 @@
 					map.removeOverlay(polyline);
 					polyline = undo_poly.pop();			
 					updateDistance();
-					marker[1].setLonLat(polyline.getLonLats().shift());
+					marker[1].setLonLat(polyline.getLonLats().pop());
 					map.addOverlay(polyline);
 				}
 			}
