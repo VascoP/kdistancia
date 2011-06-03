@@ -2,147 +2,37 @@
 <head>
 	<title>Quanto Corri</title>
 	<script type="text/javascript" src="http://js.sapo.pt/Bundles/SAPOMapsAPI.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:regular,bolditalic,bold' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<link href='style.css' rel='stylesheet' type='text/css' />
-	<script type='text/javascript'>
-		window.onload = init;
-		window.onresize = resizeMap;
-		
-		var map;
-		var marker = new Array();
-		var polyline;
-		var undo_poly = new Array();
-		
-		var style = {
-			strokeColor: "#ff0000",
-			strokeOpacity: 0.5,
-			strokeLinecap: "round",
-			strokeWidth: 5
-		};
-		
-		var recording = false;
-		
-		function resizeMap(){
-			var divh = document.getElementById("page").offsetHeight;
-			document.getElementById("map").style.height = divh - 30;
-		}
-		
-		function init(){
-			resizeMap();
-			map = new SAPO.Maps.Map("map");
-			map.addControl(new SAPO.Maps.Control.MapType());
-			map.addControl(new SAPO.Maps.Control.Navigation());
-			map.zoomTo(7);
-			map.events.register('click', this, clicked);
-		}
-		
-		function clicked(evt){
-			if(recording)
-			{
-				var lonlat = map.getLonLatFromContainerPixel(evt.xy);
-				if(marker.length < 2)
-				{
-					marker.push(new SAPO.Maps.Marker(lonlat));
-					map.addOverlay(marker[marker.length-1]);
-				}
-				else
-					marker[1].setLonLat(lonlat);
-				
-				if(polyline == null)
-				{
-					polyline = new SAPO.Maps.Polyline(lonlat, style);
-					map.addOverlay(polyline);
-				}
-				if(polyline.getVertexCount() > 0)
-					undo_poly[(polyline.getVertexCount()-1)] = polyline.clone();
-				polyline.insertVertex(polyline.getVertexCount(), lonlat);
-				
-				updateDistance();
-			}
-		}
-		
-		function startRecording(){
-			recording = true;
-			document.getElementById("startbutton").value = "A marcar...";
-		}
-		
-		function closeRun(){
-			if(recording && marker.length > 1)
-			{
-				map.removeOverlay(marker[1]);
-				polyline.insertVertex(polyline.getVertexCount(), polyline.getVertex(0));
-				updateDistance();
-			}
-		}
-		
-		function updateDistance(){
-			if(polyline != null)
-			{
-				var distance = Math.floor(polyline.getLength());
-				if(distance > 1000)
-				{
-					distance /= 1000;
-					document.getElementById("distance").innerHTML = "Distância total: " + distance + " kilometros.";
-				}
-				else
-					document.getElementById("distance").innerHTML = "Distância total: " + distance + " metros.";
-			}
-			else
-				document.getElementById("distance").innerHTML = "Distância total: 0 metros.";
-		}
-		
-		function eraseRun(){
-			map.removeOverlay(polyline);
-			map.removeOverlay(marker[0]);
-			if(marker[1])
-				map.removeOverlay(marker[1]);
-			marker.length = undo_poly.length = 0;
-			polyline = null;
-			recording = false;
-			document.getElementById("startbutton").value = "Começar a marcar";
-			updateDistance();
-		}
-		
-		function undoPoint(){
-			if(recording && polyline)
-			{
-				var i = polyline.getVertexCount();
-				
-				if(i == 0)
-					return;
-				if(i == 1)
-					eraseRun();
-				else
-				{
-					map.removeOverlay(polyline);
-					polyline = undo_poly.pop();			
-					updateDistance();
-					marker[1].setLonLat(polyline.getLonLats().pop());
-					map.addOverlay(polyline);
-				}
-			}
-		}
-
-	</script>
+	<script type='text/javascript' src='functions.js'></script>    
 </head>
 
 <body>
     <div id="page">
-        <div id="h_bgd">
-			<div id="title">
-					<a href="">Quanto Corri</a>
-					<div id="subtitle">as distâncias dos seus treinos à distância de um clique!</div>
-			</div><!--/title-->
-		</div>
-			
-
         <div id="main">
-		<h1>Carregue no mapa para marcar o ínicio da sua corrida<h1>		
-		<input id="startbutton" type="button" onclick="startRecording();" value="Começar a marcar" />
-		<input id="closerun" type="button" onclick="closeRun();" value="Voltar para casa" />
-		<input id="undopoint" type="button" onclick="undoPoint();" value="Voltar atrás" />
-		<input id="eraserun" type="button" onclick="eraseRun();" value="Apagar percurso" />
-		<p id="distance">Distância total: 0 metros.</p>
+			<div id="title">
+					<h1>QuantoCorri.com</h1>
+			</div><!--/title-->		
+			<h2>Tipo de actividade<a class="expand"> [-]</a></h2>
+			<p>Peso: <input type="text" id="weight" style="width:30px" value="0" onChange="updateStats(weight.value, hour.value, minute.value)"/> kg</p>
+			<p>Duração: 
+			<input type="text" id="hour" style="width:20px" value="0" onChange="updateStats(weight.value, hour.value, minute.value)"/> h
+			<input type="text" id="minute" style="width:20px" value="0" onChange="updateStats(weight.value, hour.value, minute.value)"/> m</p>
+			<p>Nº de voltas: <input type="text" id="laps" style="width:20px" value="1" onChange="updateDistance(laps.value)"/></p>
+			<h2>Estatísticas da actividade<a class="expand"> [-]</a></h2>
+			<p id="distance">Distância total: 0 m</p>
+			<p id="calories">Calorias queimadas: 0 kcal</p>
+			<p id="speed">Velocidade média: 0 km/h</p>
+			<p id="min_km">Velocidade média: 0 min/km</p>
+			<p><a href="about.html" target="_blank">Sobre</a></p>
         </div><!--/main-->
+		<div id="transbttn">
+			<input id="startbutton" class="button" type="button" onclick="startRecording();" value="Começar a marcar" />
+			<input id="eraserun" class="button" type="button" onclick="eraseRun();" value="Apagar percurso" />
+			<input id="closerun" class="button" type="button" onclick="closeRun();" value="Unir extremos" />
+			<input id="undopoint" class="button" type="button" onclick="undoPoint();" value="Anular troço" />
+		</div>
 		
 		<div id="map"></div>
 		
