@@ -22,6 +22,8 @@
 		map.addControl(new SAPO.Maps.Control.Navigation(), new OpenLayers.Pixel(240,15));
 		map.zoomTo(7);
 		map.events.register('click', this, clicked);
+		if (navigator.userAgent.indexOf('MSIE') !=-1)
+			$('<p>Este site não está optimizado para Internet Explorer. Para uma melhor experiência usar um browser como o <a href="http://www.google.com/chrome" target="_ablank">Chrome</a> ou <a href="http://www.mozilla.com" target="_ablank">Firefox</a></p>').appendTo('#main');
 	}
 	
 	function clicked(evt){
