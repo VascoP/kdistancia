@@ -6,8 +6,6 @@ Para percursos nao personalizados (ex: distancia da rua A a rua B) o proprio sit
 utilizando varios meios de transporte.
 A aplicacao usa a API e os recursos dos mapas do sapo.
 
-Duvidas ou sugestoes e favor enviar para vascogpinho(at)gmail(ponto)com
-
 Kdistancia
 The Kdistancia (how far) is an application to check the distance of costumized routes 
 made in walks on foot, bicycle or other. 
@@ -16,5 +14,3 @@ available in training, or so we can check the distance of a given route before a
 For non customized routes (eg distance from street A to street B) mapas.sapo.pt's own 
 service already does a good job with estimates using various means of transport. 
 The application uses the API and features of mapas.sapo.pt 
-
-Questions or suggestions please send to and vascogpinho (at) gmail (dot) com
