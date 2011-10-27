@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Kdistância - pedómetro online</title>
+	<title>Kdistï¿½ncia - pedï¿½metro online</title>
 	<meta name="description" content="Pedometro online, medir distancias em portugal" />
 	<meta name="keywords" content="pedometro,corrida,jogging,bicicleta,mapa,portugal" />
 
@@ -9,43 +9,32 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<link href='style.css' rel='stylesheet' type='text/css' />
 	<script type='text/javascript' src='functions.js'></script>    
-	<script type="text/javascript">
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-13255192-7']);
-	  _gaq.push(['_trackPageview']);
-
-	  (function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	</script>
 </head>
 
 <body>
     <div id="page">
         <div id="main">
 			<div id="title">
-					<h1>Kdistância</h1>
+					<h1>Kdistï¿½ncia</h1>
 			</div><!--/title-->		
 			<h2>Tipo de actividade</h2>
 			<p>Peso: <input type="text" id="weight" style="width:30px" value="0" onChange="updateStats(weight.value, hour.value, minute.value)"/> kg</p>
-			<p>Duração: 
+			<p>Duraï¿½ï¿½o: 
 			<input type="text" id="hour" style="width:20px" value="0" onChange="updateStats(weight.value, hour.value, minute.value)"/> h
 			<input type="text" id="minute" style="width:20px" value="0" onChange="updateStats(weight.value, hour.value, minute.value)"/> m</p>
-			<p>Nº de voltas: <input type="text" id="laps" style="width:20px" value="1" onChange="updateDistance(laps.value)"/></p>
-			<h2>Estatísticas da actividade</h2>
-			<p id="distance">Distância total: 0 m</p>
+			<p>Nï¿½ de voltas: <input type="text" id="laps" style="width:20px" value="1" onChange="updateDistance(laps.value)"/></p>
+			<h2>Estatï¿½sticas da actividade</h2>
+			<p id="distance">Distï¿½ncia total: 0 m</p>
 			<p id="calories">Calorias queimadas: 0 kcal</p>
-			<p id="speed">Velocidade média: 0 km/h</p>
-			<p id="min_km">Velocidade média: 0 min/km</p>
+			<p id="speed">Velocidade mï¿½dia: 0 km/h</p>
+			<p id="min_km">Velocidade mï¿½dia: 0 min/km</p>
 			<p><a href="about.html" target="_blank">Sobre </a>| <a href="help.html" target="_blank">Ajuda </a></p>
         </div><!--/main-->
 		<div id="transbttn">
-			<input id="startbutton" class="button" type="button" onclick="startRecording();" value="Começar a marcar" />
+			<input id="startbutton" class="button" type="button" onclick="startRecording();" value="Comeï¿½ar a marcar" />
 			<input id="eraserun" class="button" type="button" onclick="eraseRun();" value="Apagar percurso" />
 			<input id="closerun" class="button" type="button" onclick="closeRun();" value="Unir extremos" />
-			<input id="undopoint" class="button" type="button" onclick="undoPoint();" value="Anular troço" />
+			<input id="undopoint" class="button" type="button" onclick="undoPoint();" value="Anular troï¿½o" />
 		</div>
 		
 		<div id="map"></div>
