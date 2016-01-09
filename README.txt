@@ -1,3 +1,4 @@
+Kdistancia
 The Kdistancia (how far) is an application to check the distance of customized routes 
 made in walks on foot, bicycle or other. 
 The purpose of the application are the situations in that a GPS device for real-time capturing was not 
