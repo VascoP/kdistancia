@@ -23,7 +23,7 @@
 		map.zoomTo(7);
 		map.events.register('click', this, clicked);
 		if (navigator.userAgent.indexOf('MSIE') !=-1)
-			$('<p>Este site n„o est· optimizado para Internet Explorer. Para uma melhor experiÍncia usar um browser como o <a href="http://www.google.com/chrome" target="_ablank">Chrome</a> ou <a href="http://www.mozilla.com" target="_ablank">Firefox</a></p>').appendTo('#main');
+			$('<p>Este site n√£o est√° optimizado para Internet Explorer. Para uma melhor experi√™ncia usar um browser como o <a href="http://www.google.com/chrome" target="_ablank">Chrome</a> ou <a href="http://www.mozilla.com" target="_ablank">Firefox</a></p>').appendTo('#main');
 	}
 	
 	function clicked(evt){
@@ -85,15 +85,15 @@
 			if(distance > 1000)
 			{
 				var km = distance/1000;
-				document.getElementById("distance").innerHTML = "Dist‚ncia total: " + km.toFixed(2) + " km";
+				document.getElementById("distance").innerHTML = "Dist√¢ncia total: " + km.toFixed(2) + " km";
 			}
 			else
-				document.getElementById("distance").innerHTML = "Dist‚ncia total: " + distance.toFixed(2) + " m";
+				document.getElementById("distance").innerHTML = "Dist√¢ncia total: " + distance.toFixed(2) + " m";
 				
 			updateStats(weight.value, hour.value, minute.value);
 		}
 		else
-			document.getElementById("distance").innerHTML = "Dist‚ncia total: 0 m";
+			document.getElementById("distance").innerHTML = "Dist√¢ncia total: 0 m";
 	}
 	
 	function eraseRun(){
@@ -163,8 +163,8 @@
 				calories = Math.floor((0.53*(weight/0.453)*(distance/1.609))/1000);
 			
 			document.getElementById("calories").innerHTML = "Calorias queimadas: " + calories + " kcal";
-			document.getElementById("speed").innerHTML = "Velocidade mÈdia: " + kmh.toFixed(2) + " km/h";
-			document.getElementById("min_km").innerHTML = "Velocidade mÈdia: " + minkm + ":" + seckm + " min/km";
+			document.getElementById("speed").innerHTML = "Velocidade m√©dia: " + kmh.toFixed(2) + " km/h";
+			document.getElementById("min_km").innerHTML = "Velocidade m√©dia: " + minkm + ":" + seckm + " min/km";
 		}
 	}
 	
